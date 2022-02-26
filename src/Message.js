@@ -9,4 +9,14 @@ function Message(props) {
   );
 }
 
-export { Message };
+class MessageEl extends React.Component {
+  render() {
+    return (
+      <div className="text">
+        Message: <span className="text__message">{this.props.text}</span>
+      </div>
+    );
+  }
+}
+
+export { Message, MessageEl };
