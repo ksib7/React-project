@@ -1,9 +1,69 @@
-.text {
-  font-size: 46px;
-  text-align: center;
-  margin-bottom: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Neonderthaw&family=Roboto+Condensed&family=Source+Sans+Pro:wght@200;400;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.text__message {
-  color: teal;
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+  min-height: 70px;
+  border: 2px solid teal;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 18px;
+  padding: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  align-self: flex-end;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background: #7bae73;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.message {
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 25px;
+  color: #3f3f3f;
+}
+
+.message__text {
+  padding-top: 35px;
+}
+
+input:valid ~ button:hover {
+  opacity: 1;
+}
+
+input:valid ~ button:active {
+  opacity: 0.6;
+}
+
+input:invalid ~ button {
+  background: #eeeeee;
+  border-radius: 10px;
+  color: #b4b4b4;
 }
