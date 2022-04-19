@@ -12,36 +12,6 @@
   padding: 0px 10px;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.input {
-  width: 100%;
-  min-height: 70px;
-  border: 2px solid teal;
-  border-radius: 10px;
-  margin-top: 10px;
-  font-size: 18px;
-  padding: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.btn {
-  align-self: flex-end;
-  margin-top: 20px;
-  font-size: 16px;
-  color: #ffffff;
-  background: #7bae73;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-}
-
 .message {
   font-family: "Source Sans Pro";
   font-weight: 600;
@@ -52,18 +22,4 @@
 
 .message__text {
   padding-top: 35px;
-}
-
-input:valid ~ button:hover {
-  opacity: 1;
-}
-
-input:valid ~ button:active {
-  opacity: 0.6;
-}
-
-input:invalid ~ button {
-  background: #eeeeee;
-  border-radius: 10px;
-  color: #b4b4b4;
 }
