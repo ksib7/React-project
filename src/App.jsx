@@ -1,73 +1,56 @@
-import React, { useState, useEffect } from "react";
-import { Form } from "./components/Form/Form";
-import { nanoid } from "nanoid";
-import PropTypes from "prop-types";
-import "./style.scss";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Header } from "./components/Header";
+import { Home } from "./Views/Home";
+import { Profile } from "./Views/Profile";
+import { Chats } from "./Views/Chats";
+import { ChatList } from "./components/ChatList";
 
-const AUTHOR = {
-  USER: "USER",
-  BOT: "BOT",
-};
+const initialChat = [
+  {
+    id: "1",
+    name: "Chat",
+  },
+];
 
-// не видит PropTypes
-AUTHOR.propTypes = {
-  USER: PropTypes.number,
-  BOT: PropTypes.string,
-};
-
-const App = () => {
-  let [messageList, setMessageList] = useState([]);
-
-  useEffect(() => {
-    if (
-      messageList.length > 0 &&
-      messageList[messageList.length - 1].author !== AUTHOR.BOT
-    ) {
-      const timeOut = setTimeout(() => {
-        setMessageList([
-          ...messageList,
-          {
-            id: nanoid(),
-            author: AUTHOR.BOT,
-            value: "Hello from bot",
-          },
-        ]);
-      }, 1000);
-
-      return () => {
-        clearTimeout(timeOut);
-      };
-    }
-  }, [messageList]);
-
-  const sendMessage = (value) => {
-    setMessageList([
-      ...messageList,
-      {
-        id: nanoid(),
-        author: AUTHOR.USER,
-        value,
-      },
-    ]);
-  };
-
+export const App = () => {
+  const [chatList, setChatList] = useState(initialChat);
+  const [messageList, setMessageList] = useState([]);
   return (
     <div className="container">
-      <Form addMessage={sendMessage} />
-      <h1 className="message">
-        {messageList.map((item) => (
-          <div key={item.id} className="message__text">
-            {item.author}: {item.value}
-          </div>
-        ))}
-      </h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Header />}>
+            <Route index element={<Home />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="chats">
+              <Route
+                path=":chatId"
+                element={
+                  <Chats
+                    chatList={chatList}
+                    onAddChat={setChatList}
+                    messageList={messageList}
+                    setMessageList={setMessageList}
+                  />
+                }
+              />
+              <Route
+                index
+                element={
+                  <ChatList chatList={chatList} onAddChat={setChatList} />
+                }
+              />
+            </Route>
+            <Route
+              path="*"
+              element={
+                <h1 className="error">Такой страницы не существует...</h1>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
-
-// не видит PropTypes
-App.propTypes = {
-  sendMessage: PropTypes.number,
-};
-
-export { App };

@@ -21,7 +21,7 @@ export const Form = ({ addMessage }) => {
   });
 
   return (
-    <form className="form" onSubmit={sendForm}>
+    <form className="container form" onSubmit={sendForm}>
       <Input
         ref={inputRef}
         autoFocus
