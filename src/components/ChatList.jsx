@@ -7,32 +7,25 @@ import "./ChatList.scss";
 
 const ariaLabel = { "aria-label": "description" };
 
-export const ChatList = ({ chatList, onAddChat }) => {
+export const ChatList = ({ chatList, removeChat, onAddChat }) => {
   const [name, setName] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (name) {
-      onAddChat([
-        ...chatList,
-        {
-          id: nanoid(),
-          name,
-        },
-      ]);
+      onAddChat({
+        id: nanoid(),
+        name,
+      });
 
       setName("");
     }
   };
 
-  const removeChat = (chat) => {
-    setName(name.filter((item) => item !== chat));
-  }; // Не работает функция удаления
-
   return (
     <>
-      <div className="container list">
+      <div className="list">
         <form onSubmit={handleSubmit}>
           <Input
             inputProps={ariaLabel}
@@ -50,7 +43,7 @@ export const ChatList = ({ chatList, onAddChat }) => {
           {chatList.map((item) => (
             <li className="list__items__chat" key={item.id}>
               <Link to={`/chats/${item.id}`}>{item.name}</Link>
-              <button onClick={removeChat}>X</button>
+              <button onClick={() => removeChat(item.id)}>x</button>
             </li>
           ))}
         </ul>

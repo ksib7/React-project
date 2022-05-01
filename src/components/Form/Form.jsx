@@ -33,7 +33,7 @@ export const Form = ({ addMessage }) => {
         value={value}
         onChange={(event) => setValue(event.target.value)}
       ></Input>
-      <Button />
+      <Button>Send message</Button>
     </form>
   );
 };
