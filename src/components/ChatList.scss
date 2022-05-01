@@ -1,0 +1,43 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.list__items {
+  list-style: none;
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 25px;
+}
+
+.list__items > li > a:hover {
+  color: black;
+  border-bottom: none;
+}
+
+.list__items > li:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+.list__items__chat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.list__items__chat > button {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 29px;
+  font-style: bold;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
+  height: 60px;
+}
