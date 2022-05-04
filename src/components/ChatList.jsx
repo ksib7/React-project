@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Input from "@mui/material/Input";
 import { ButtonEl as Button } from "./Button/ButtonEl";
 
-import { useDispatch, useSelector } from "react-redux";
-import { addChat, removeChat } from "./store/chats/actions";
-import { selectChatList } from "./store/chats/selectors";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { addChat, removeChat } from "../store/chats/actions";
+import { selectChatList } from "../store/chats/selectors";
 
 import "./ChatList.scss";
 
@@ -15,10 +15,7 @@ export const ChatList = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
 
-  const chatList = useSelector(
-    selectChatList,
-    (prev, next) => prev.length === next.length
-  );
+  const chatList = useSelector(selectChatList, shallowEqual);
 
   const handleSubmit = (event) => {
     event.preventDefault();

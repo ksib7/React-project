@@ -1,9 +1,9 @@
 import { nanoid } from "nanoid";
-import { AUTHOR } from "../../../Views/Chats";
+import { AUTHOR } from "../../Views/Chats";
 import { ADD_CHAT, REMOVE_CHAT, ADD_MESSAGE } from "./actions";
 
 const initialState = {
-  Chat: [
+  сhat: [
     {
       id: "1",
       author: AUTHOR.USER,
@@ -32,7 +32,7 @@ export const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.chatId]: [
-          [...state[action.chatId]],
+          ...state[action.chatId],
           {
             id: nanoid(),
             author: AUTHOR.USER,

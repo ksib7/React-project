@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  checkboxProfile,
-  changeName,
-} from "../components/store/profile/actions";
+import { checkboxProfile, changeName } from "../store/profile/actions";
 
 export const Profile = () => {
   const [value, setValue] = useState("");

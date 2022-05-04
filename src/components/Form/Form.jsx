@@ -3,7 +3,7 @@ import Input from "@mui/material/Input";
 import { ButtonEl as Button } from "../Button/ButtonEl";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addMessage } from "../store/chats/actions";
+import { addMessage } from "../../store/chats/actions";
 
 import "./Form.scss";
 
@@ -11,7 +11,7 @@ const ariaLabel = { "aria-label": "description" };
 
 export const Form = () => {
   let [value, setValue] = useState("");
-  const chatId = useParams();
+  const { chatId } = useParams();
   const dispatch = useDispatch();
 
   const sendForm = (e) => {
