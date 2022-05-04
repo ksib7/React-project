@@ -1,26 +1,24 @@
-import React, { useEffect } from "react";
+import React /* useEffect */ from "react";
 import { Form } from "../components/Form/Form";
-import { nanoid } from "nanoid";
-import "../style.scss";
 import { ChatList } from "../components/ChatList";
 import { useParams } from "react-router-dom";
 import { MessageList } from "../components/MessageList";
+import { shallowEqual, useSelector } from "react-redux";
+import { selectChats } from "../components/store/chats/selectors";
+
+import "../style.scss";
 
 export const AUTHOR = {
   USER: "USER",
   BOT: "BOT",
 };
 
-export const Chats = ({
-  chatList,
-  removeChat,
-  onAddChat,
-  messageList,
-  setMessageList,
-}) => {
+export const Chats = () => {
   const { chatId } = useParams();
 
-  useEffect(() => {
+  const chats = useSelector(selectChats, shallowEqual);
+
+  /*   useEffect(() => {
     if (
       chatId &&
       messageList[chatId].length > 0 &&
@@ -46,35 +44,13 @@ export const Chats = ({
         clearTimeout(timeOut);
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messageList]);
-
-  const sendMessage = (value) => {
-    if (chatId) {
-      // проверяем есть ли наша страница с чатом с определенным ID
-      setMessageList({
-        ...messageList,
-        [chatId]: [
-          ...messageList[chatId],
-          {
-            id: nanoid(),
-            author: AUTHOR.USER,
-            value,
-          },
-        ],
-      });
-    }
-  };
+  }, [messageList]); */
 
   return (
     <div>
-      <ChatList
-        chatList={chatList}
-        onAddChat={onAddChat}
-        removeChat={removeChat}
-      />
-      <Form addMessage={sendMessage} />
-      <MessageList messageList={chatId ? messageList[chatId] : []} />
+      <ChatList />
+      <Form />
+      <MessageList messageList={chatId ? chats[chatId] : []} />
     </div>
   );
 };

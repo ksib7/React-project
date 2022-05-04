@@ -1,29 +1,32 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import Input from "@mui/material/Input";
 import { ButtonEl as Button } from "../Button/ButtonEl";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { addMessage } from "../store/chats/actions";
+
 import "./Form.scss";
 
 const ariaLabel = { "aria-label": "description" };
 
-export const Form = ({ addMessage }) => {
+export const Form = () => {
   let [value, setValue] = useState("");
-  const inputRef = useRef(null);
+  const chatId = useParams();
+  const dispatch = useDispatch();
 
-  const sendForm = (event) => {
-    event.preventDefault();
-    addMessage(value);
+  const sendForm = (e) => {
+    e.preventDefault();
+
+    if (chatId) {
+      dispatch(addMessage(chatId, value));
+    }
+
     setValue("");
   };
-
-  useEffect(() => {
-    inputRef.current.focus();
-  });
 
   return (
     <form className="container form" onSubmit={sendForm}>
       <Input
-        ref={inputRef}
         autoFocus
         inputProps={ariaLabel}
         required
@@ -31,14 +34,9 @@ export const Form = ({ addMessage }) => {
         type="text"
         placeholder="Введите сообщение . . ."
         value={value}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       ></Input>
-      <Button>Send message</Button>
+      <Button disabled={!value}>Send message</Button>
     </form>
   );
-};
-
-Form.propTypes = {
-  addMessage: PropTypes.func,
-  sendForm: PropTypes.func,
 };

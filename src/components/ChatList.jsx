@@ -1,24 +1,30 @@
 import React, { useState } from "react";
-import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
 import Input from "@mui/material/Input";
 import { ButtonEl as Button } from "./Button/ButtonEl";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addChat, removeChat } from "./store/chats/actions";
+import { selectChatList } from "./store/chats/selectors";
+
 import "./ChatList.scss";
 
 const ariaLabel = { "aria-label": "description" };
 
-export const ChatList = ({ chatList, removeChat, onAddChat }) => {
+export const ChatList = () => {
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
+
+  const chatList = useSelector(
+    selectChatList,
+    (prev, next) => prev.length === next.length
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (name) {
-      onAddChat({
-        id: nanoid(),
-        name,
-      });
-
+      dispatch(addChat(name));
       setName("");
     }
   };
@@ -42,8 +48,8 @@ export const ChatList = ({ chatList, removeChat, onAddChat }) => {
         <ul className="list__items">
           {chatList.map((item) => (
             <li className="list__items__chat" key={item.id}>
-              <Link to={`/chats/${item.id}`}>{item.name}</Link>
-              <button onClick={() => removeChat(item.id)}>x</button>
+              <Link to={`/chats/${item.name}`}>{item.name}</Link>
+              <button onClick={() => dispatch(removeChat(item.name))}>x</button>
             </li>
           ))}
         </ul>
