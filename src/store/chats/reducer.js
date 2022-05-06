@@ -6,7 +6,7 @@ const initialState = {
   сhat: [
     {
       id: "1",
-      author: AUTHOR.USER,
+      author: AUTHOR.BOT,
       value: "Welcome!",
     },
   ],
@@ -35,8 +35,8 @@ export const chatReducer = (state = initialState, action) => {
           ...state[action.chatId],
           {
             id: nanoid(),
-            author: AUTHOR.USER,
-            value: action.message,
+            author: action.message.author,
+            value: action.message.value,
           },
         ],
       };

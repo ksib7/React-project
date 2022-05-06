@@ -3,7 +3,8 @@ import Input from "@mui/material/Input";
 import { ButtonEl as Button } from "../Button/ButtonEl";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addMessage } from "../../store/chats/actions";
+import { AddMessageWithResponse } from "../../store/chats/actions";
+import { AUTHOR } from "../../Views/Chats";
 
 import "./Form.scss";
 
@@ -17,8 +18,10 @@ export const Form = () => {
   const sendForm = (e) => {
     e.preventDefault();
 
-    if (chatId) {
-      dispatch(addMessage(chatId, value));
+    if (chatId && value) {
+      dispatch(
+        AddMessageWithResponse(chatId, { value: value, author: AUTHOR.USER })
+      );
     }
 
     setValue("");
