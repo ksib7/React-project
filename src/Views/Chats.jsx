@@ -1,8 +1,8 @@
-import React /* useEffect */ from "react";
+import React from "react";
 import { Form } from "../components/Form/Form";
 import { ChatList } from "../components/ChatList";
 import { Navigate, useParams } from "react-router-dom";
-import { MessageList } from "../components/MessageList";
+import { MessageList } from "../components/MessageList/MessageList";
 import { shallowEqual, useSelector } from "react-redux";
 import { selectChatList, selectChats } from "../store/chats/selectors";
 

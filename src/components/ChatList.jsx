@@ -40,7 +40,7 @@ export const ChatList = () => {
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
-          <Button type="submit">Add chat</Button>
+          <Button disabled={!name}>Add chat</Button>
         </form>
         <ul className="list__items">
           {chatList.map((item) => (

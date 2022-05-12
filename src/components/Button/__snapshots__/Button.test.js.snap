@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button render button component with snapshot (remember the mark up) 1`] = `
+<DocumentFragment>
+  <div
+    class="flex MuiBox-root css-1yuhvjn"
+  >
+    <button
+      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+      data-testid="button"
+      tabindex="0"
+      type="submit"
+    >
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Button render button component with snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex MuiBox-root css-1yuhvjn"
+  >
+    <button
+      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+      data-testid="button"
+      tabindex="0"
+      type="submit"
+    >
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;
