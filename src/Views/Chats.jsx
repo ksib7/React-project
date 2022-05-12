@@ -20,34 +20,6 @@ export const Chats = () => {
 
   const chats = useSelector(selectChats, shallowEqual);
 
-  /*   useEffect(() => {
-    if (
-      chatId &&
-      messageList[chatId].length > 0 &&
-      messageList[chatId][messageList[chatId].length - 1].author !== AUTHOR.BOT
-    ) {
-      const timeOut = setTimeout(() => {
-        setMessageList({
-          ...messageList, // раскрываем все сообщения в объекте
-          [chatId]: [
-            // переходим в наш чат с определенным ID
-            ...messageList[chatId], // в чате с определенным ID раскрываем старые сообщения
-            {
-              // добавляем новое сообщение
-              id: nanoid(),
-              author: AUTHOR.BOT,
-              value: "Hello from bot",
-            },
-          ],
-        });
-      }, 1000);
-
-      return () => {
-        clearTimeout(timeOut);
-      };
-    }
-  }, [messageList]); */
-
   if (!chatList.find((chat) => chat.name === chatId)) {
     return <Navigate replace to="/chats" />;
   }

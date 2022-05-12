@@ -1,3 +1,5 @@
+import { AUTHOR } from "../../Views/Chats";
+
 export const ADD_CHAT = "CHATS::ADD_CHAT";
 export const REMOVE_CHAT = "CHATS::REMOVE_CHAT";
 export const ADD_MESSAGE = "CHATS::ADD_MESSAGE";
@@ -17,3 +19,24 @@ export const addMessage = (chatId, message) => ({
   chatId,
   message,
 });
+
+// Добавление реализации ответа бота (добавление асинхронности с помощью библиотеки redux-thunk)
+
+export const AddMessageWithResponse = (chatId, message) => (dispatch) => {
+  dispatch(addMessage(chatId, message));
+
+  if (message.author !== AUTHOR.BOT) {
+    let timeout = setTimeout(() => {
+      dispatch(
+        addMessage(chatId, {
+          value: "Hello from bot!",
+          author: AUTHOR.BOT,
+        })
+      );
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }
+};
