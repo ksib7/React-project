@@ -1,9 +1,9 @@
-import { Button } from "@mui/material";
+import { Button, Grid, Tooltip } from "@mui/material";
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 import { changeAuth } from "../store/profile/actions";
 
@@ -41,14 +41,13 @@ export const Header = () => {
       <ul className="menu__items">
         {navigation.map((item) => (
           <li key={item.id}>
-            <NavLink
-              style={({ isActive }) => ({
-                color: isActive ? "green" : "darkgrey",
-              })}
-              to={item.to}
-            >
-              {item.name}
-            </NavLink>
+            <Link to={item.to}>
+              <Grid item>
+                <Tooltip disableHoverListener title="Add">
+                  <Button style={{ fontSize: "30px" }}>{item.name}</Button>
+                </Tooltip>
+              </Grid>
+            </Link>
           </li>
         ))}
       </ul>
