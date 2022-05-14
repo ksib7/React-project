@@ -1,5 +1,12 @@
+import { Button } from "@mui/material";
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { Link, NavLink, Outlet } from "react-router-dom";
+
+import { changeAuth } from "../store/profile/actions";
+
 import "./Header.scss";
 
 let navigation = [
@@ -18,9 +25,17 @@ let navigation = [
     to: "/chats",
     name: "Chats",
   },
+  {
+    id: 4,
+    to: "/articles",
+    name: "Articles",
+  },
 ];
 
 export const Header = () => {
+  const auth = useSelector((state) => state.profile.auth);
+  const dispatch = useDispatch();
+
   return (
     <header className="menu">
       <ul className="menu__items">
@@ -37,10 +52,25 @@ export const Header = () => {
           </li>
         ))}
       </ul>
+      {auth ? (
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => dispatch(changeAuth(false))}
+        >
+          Log out
+        </Button>
+      ) : (
+        <Link className="signin" to="/signin">
+          <Button variant="outlined" size="small">
+            Sign in
+          </Button>
+        </Link>
+      )}
 
-      <div>
+      <main>
         <Outlet />
-      </div>
+      </main>
     </header>
   );
 };

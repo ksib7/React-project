@@ -12,7 +12,7 @@ export const composeEnhancers =
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["profile"],
+  blacklist: [],
 };
 
 const rootReducer = combineReducers({
