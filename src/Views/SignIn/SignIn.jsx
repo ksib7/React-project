@@ -32,7 +32,7 @@ export const SignIn = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={handleSubmit} className="formField">
         <TextField
           className="input"
           id="outlined-read-only-input"
@@ -42,7 +42,7 @@ export const SignIn = () => {
           value={login}
         />
         <TextField
-          className="input"
+          className="textField"
           id="outlined-password-input"
           label="Password"
           type="password"

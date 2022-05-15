@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Input from "@mui/material/Input";
+import { Card, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import { ButtonEl as Button } from "./Button/ButtonEl";
 
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
@@ -42,14 +45,19 @@ export const ChatList = () => {
           />
           <Button disabled={!name}>Add chat</Button>
         </form>
-        <ul className="list__items">
+        <div className="list__items">
           {chatList.map((item) => (
-            <li className="list__items__chat" key={item.id}>
+            <Card className="list__items__chat" key={item.id}>
               <Link to={`/chats/${item.name}`}>{item.name}</Link>
-              <button onClick={() => dispatch(removeChat(item.name))}>x</button>
-            </li>
+              <IconButton
+                onClick={() => dispatch(removeChat(item.name))}
+                aria-label="delete"
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Card>
           ))}
-        </ul>
+        </div>
       </div>
     </>
   );

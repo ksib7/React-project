@@ -27,8 +27,10 @@ export const Chats = () => {
   return (
     <div>
       <ChatList />
-      <Form />
-      <MessageList messageList={chatId ? chats[chatId] : []} />
+      <div>
+        <Form />
+        <MessageList messageList={chatId ? chats[chatId] : []} />
+      </div>
     </div>
   );
 };
