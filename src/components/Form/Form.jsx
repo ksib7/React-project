@@ -28,7 +28,7 @@ export const Form = () => {
   };
 
   return (
-    <form className="container form" onSubmit={sendForm}>
+    <form className="form" onSubmit={sendForm}>
       <Input
         autoFocus
         inputProps={ariaLabel}

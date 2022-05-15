@@ -1,4 +1,9 @@
-.message {
+.block {
+  padding: 20px 10px;
+  margin-top: 40px;
+}
+
+.block__message {
   font-family: "Source Sans Pro";
   font-weight: 600;
   font-size: 42px;
@@ -6,6 +11,6 @@
   color: #3f3f3f;
 }
 
-.message__text {
+.block__message__text:not(:first-child) {
   padding-top: 35px;
 }

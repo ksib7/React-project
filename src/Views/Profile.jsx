@@ -5,8 +5,8 @@ import { checkboxProfile, changeName } from "../store/profile/actions";
 export const Profile = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
-  const visible = useSelector((state) => state.visible);
-  const name = useSelector((state) => state.name);
+  const visible = useSelector((state) => state.profile.visible);
+  const name = useSelector((state) => state.profile.name);
 
   return (
     <div>

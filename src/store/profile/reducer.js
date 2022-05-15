@@ -1,8 +1,9 @@
-import { CHANGE_NAME, CHECKBOX_PROFILE } from "./actions";
+import { CHANGE_NAME, CHECKBOX_PROFILE, CHANGE_AUTH } from "./actions";
 
 const initialState = {
   visible: true,
   name: "Default name",
+  auth: false,
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -18,6 +19,13 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         name: action.name,
+      };
+    }
+
+    case CHANGE_AUTH: {
+      return {
+        ...state,
+        auth: !state.auth,
       };
     }
 
