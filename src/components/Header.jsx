@@ -1,11 +1,12 @@
 import { Button, Grid, Tooltip } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link, Outlet } from "react-router-dom";
-
 import { changeAuth } from "../store/profile/actions";
+
+import { logOut } from "./Firebase";
 
 import "./Header.scss";
 
@@ -33,8 +34,19 @@ let navigation = [
 ];
 
 export const Header = () => {
-  const auth = useSelector((state) => state.profile.auth);
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.profile.auth);
+
+  const handleClickLogOut = async () => {
+    try {
+      logOut();
+      dispatch(changeAuth(false));
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
     <header className="menu">
@@ -52,19 +64,23 @@ export const Header = () => {
         ))}
       </ul>
       {auth ? (
-        <Button
-          variant="outlined"
-          size="small"
-          onClick={() => dispatch(changeAuth(false))}
-        >
+        <Button variant="outlined" size="small" onClick={handleClickLogOut}>
           Log out
         </Button>
       ) : (
-        <Link className="signin" to="/signin">
-          <Button variant="outlined" size="small">
-            Sign in
-          </Button>
-        </Link>
+        <>
+          <Link className="signin" to="/signin">
+            <Button variant="outlined" size="small">
+              Sign in
+            </Button>
+          </Link>
+          <Link className="signin" to="/signup">
+            <Button variant="outlined" size="small">
+              Sign up
+            </Button>
+          </Link>
+          {error && <div className="error">{error}</div>}
+        </>
       )}
 
       <main>
