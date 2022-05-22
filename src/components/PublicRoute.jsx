@@ -6,7 +6,7 @@ export const PublicRoute = ({ children }) => {
   const auth = useSelector((state) => state.profile.auth);
 
   if (auth) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/profile" replace />;
   }
   return children ? children : <Outlet />;
 };
