@@ -6,6 +6,8 @@ import {
   signOut,
 } from "firebase/auth";
 
+import { getDatabase, ref } from "firebase/database";
+
 const firebaseConfig = {
   apiKey: "AIzaSyARx7ZFDmgUoB4w6EaTeBH5ZP9CJJCazyc",
   authDomain: "chat-bot-8d668.firebaseapp.com",
@@ -29,3 +31,10 @@ export const logIn = async (email, password) =>
 
 // Функция выхода пользователя из личного кабинета
 export const logOut = async () => signOut(auth);
+
+// Подключаем базу данных
+const database = getDatabase(fb);
+
+// Подписываемся на частичку базы данных, в нашем случае это "user"
+
+export const userRef = ref(database, "user");

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { TextField } from "@mui/material";
 import { ButtonEl as Button } from "../../components/Button/ButtonEl";
 import { logIn } from "../../components/Firebase";
 import { changeAuth } from "../../store/profile/actions";
+
+import { TextField } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 import "./SignIn.scss";
 
@@ -27,6 +30,10 @@ export const SignIn = () => {
     }
   };
 
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
   return (
     <>
       <form onSubmit={handleSubmit} className="formField">
@@ -34,7 +41,7 @@ export const SignIn = () => {
           className="input"
           id="outlined-read-only-input"
           label="Login"
-          type="text"
+          type="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
@@ -46,7 +53,13 @@ export const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        {error && <div className="error">{error}</div>}
+        {error && (
+          <Stack spacing={2} sx={{ width: "100%" }}>
+            <Alert style={{ marginTop: "20px" }} severity="error">
+              {error}
+            </Alert>
+          </Stack>
+        )}
         <Button>Sign in</Button>
       </form>
     </>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { TextField } from "@mui/material";
 import { ButtonEl as Button } from "../../components/Button/ButtonEl";
-
 import { signUp } from "../../components/Firebase";
 
 import "./SignUp.scss";
-import { useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ export const SignUp = () => {
           className="input"
           id="outlined-read-only-input"
           label="Login"
-          type="text"
+          type="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
